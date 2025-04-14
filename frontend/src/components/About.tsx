@@ -112,14 +112,7 @@ const About = () => {
               animate={{ width: 120 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             />
-            <motion.p
-              variants={itemVariants}
-              className="text-xl md:text-2xl max-w-4xl mx-auto mt-8 font-light leading-relaxed"
-            >
-              At Samvaad, we're more than just a platform. We are a vibrant
-              collective of innovators, thinkers, and doers, dedicated to
-              connecting people and sparking meaningful conversations.
-            </motion.p>
+            
           </motion.div>
 
           {/* Mission statement with animated reveal */}
@@ -239,7 +232,7 @@ const About = () => {
           </motion.div>
 
           {/* Join us call to action */}
-          <motion.div variants={itemVariants} className="mt-20 text-center">
+          {/* <motion.div variants={itemVariants} className="mt-20 text-center">
             <motion.button
               className={`${currentTheme.accent} text-white px-10 py-4 rounded-full text-xl font-semibold`}
               whileHover={{
@@ -260,7 +253,7 @@ const About = () => {
             >
               Join Our Community
             </motion.button>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
     </section>

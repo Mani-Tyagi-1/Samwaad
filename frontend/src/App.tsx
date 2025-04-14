@@ -1,13 +1,16 @@
-import './App.css'
-import LandingPage from './pages/LandingPage'
+import "./App.css";
+
+import { ThemeProvider } from "./components/ThemeComponents/ThemeProvider";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
-
   return (
     <>
-      <LandingPage />    
+      <ThemeProvider>
+        <LandingPage />
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

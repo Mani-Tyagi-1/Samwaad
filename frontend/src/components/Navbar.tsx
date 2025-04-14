@@ -1,103 +1,97 @@
 import { useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu } from "lucide-react";
+import { useTheme } from "./ThemeComponents/ThemeProvider"; // adjust path if needed
 
 const themes = {
   light: {
-    bg: "bg-[#E8E388]",
-    text: "text-[#2E5166]",
-    card: "bg-[#A9DAB1]",
-    accent: "bg-[#92AECF]",
-    button: "bg-[#2E5166] text-[#E8E388]",
+    bg: "bg-gray-50",
+    text: "text-slate-800",
+    button: "bg-slate-800 text-white",
+    card: "bg-white",
   },
   dark: {
-    bg: "bg-[#2E5166]",
-    text: "text-[#E8E388]",
-    card: "bg-[#92AECF]",
-    accent: "bg-[#A9DAB1]",
-    button: "bg-[#E8E388] text-[#2E5166]",
+    bg: "bg-slate-900",
+    text: "text-gray-50",
+    button: "bg-teal-500 text-slate-900",
+    card: "bg-slate-800",
   },
 };
 
-export default function HeroSection() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+export default function Navbar() {
+  const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
   const t = themes[theme];
 
   return (
-    <div
-      className={`${t.bg} min-h-screen transition-colors duration-500 relative overflow-hidden`}
-    >
-      {/* Navbar */}
+    <>
       <nav
-        className={`w-full flex items-center justify-between px-8 py-4 shadow-md ${t.card}`}
+        className={`w-full flex items-center justify-between px-6 md:px-12 py-6 sticky top-0 z-50 backdrop-blur-sm bg-opacity-70 ${t.bg}`}
       >
-        <div className={`text-2xl font-bold ${t.text}`}>Samvaad</div>
-        <ul className="hidden md:flex gap-8 font-medium">
-          <li className={`hover:underline cursor-pointer ${t.text}`}>Home</li>
-          <li className={`hover:underline cursor-pointer ${t.text}`}>About</li>
-          <li className={`hover:underline cursor-pointer ${t.text}`}>
-            Consult
-          </li>
-          <li className={`hover:underline cursor-pointer ${t.text}`}>
-            Experts
-          </li>
-          <li className={`hover:underline cursor-pointer ${t.text}`}>
-            Contact
-          </li>
-        </ul>
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="p-2 rounded-full shadow-md bg-white/70 hover:scale-110 transition"
-          aria-label="Toggle Theme"
-        >
-          {theme === "light" ? (
-            <Moon className="text-black" />
-          ) : (
-            <Sun className="text-yellow-300" />
-          )}
-        </button>
-      </nav>
-
-      {/* Floating Shapes */}
-      <div className="absolute w-80 h-80 bg-[#A9DAB1] rounded-full opacity-20 blur-3xl top-[-50px] left-[-80px] animate-pulse" />
-      <div className="absolute w-96 h-96 bg-[#92AECF] rounded-full opacity-20 blur-2xl bottom-[-100px] right-[-100px] animate-spin-slow" />
-
-      {/* Hero Card */}
-      <div
-        className={`rounded-3xl shadow-2xl p-10 max-w-5xl mx-auto mt-20 flex flex-col md:flex-row items-center justify-between gap-10 ${t.card} transition-all duration-500`}
-      >
-        {/* Text Content */}
-        <div className="space-y-6 text-center md:text-left">
-          <h1 className={`text-5xl font-extrabold tracking-tight ${t.text}`}>
-            Talk. Heal. Grow.
-          </h1>
-          <p className={`text-xl font-medium ${t.text}`}>
-            Welcome to <span className="italic font-semibold">Samvaad</span> — a
-            safe space for your mental well-being. Speak with experts, or just
-            vent your thoughts. You're not alone.
-          </p>
-          <div className="flex justify-center md:justify-start gap-4">
-            <button
-              className={`px-6 py-3 rounded-full shadow-md hover:scale-105 transition transform ${t.button}`}
-            >
-              Start Talking
-            </button>
-            <button
-              className={`px-6 py-3 rounded-full shadow-inner border-2 ${t.text} hover:bg-opacity-20 transition`}
-            >
-              Explore Experts
-            </button>
+        <div className="flex items-center gap-2">
+          <div className={`text-2xl font-bold ${t.text} flex items-center`}>
+            <span className="relative">
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-teal-400 rounded-full animate-ping opacity-75"></span>
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-teal-500 rounded-full"></span>
+              Samvaad
+            </span>
           </div>
         </div>
 
-        {/* Illustration */}
-        <div>
-          <img
-            src="https://illustrations.popsy.co/gray/therapy-session.svg"
-            alt="Therapy Illustration"
-            className="w-full max-w-sm drop-shadow-xl"
-          />
+        <ul className="hidden md:flex gap-8 font-medium">
+          {["Home", "About", "Consult", "Experts", "Contact"].map((item) => (
+            <li
+              key={item}
+              className={`hover:text-teal-500 cursor-pointer transition-all duration-300 ${t.text} hover:-translate-y-1`}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-4">
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ${
+              theme === "light"
+                ? "bg-slate-800 text-white"
+                : "bg-white text-slate-800"
+            } hover:scale-110`}
+            aria-label="Toggle Theme"
+          >
+            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden p-2 rounded-lg"
+          >
+            <Menu className={t.text} />
+          </button>
         </div>
-      </div>
-    </div>
+      </nav>
+
+      {menuOpen && (
+        <div
+          className={`fixed inset-0 z-40 flex flex-col items-center justify-center ${t.card} text-center animate-fadeIn md:hidden`}
+        >
+          <ul className="flex flex-col gap-8 font-medium text-xl">
+            {["Home", "About", "Consult", "Experts", "Contact"].map((item) => (
+              <li
+                key={item}
+                className={`hover:text-teal-500 cursor-pointer transition-all duration-300 ${t.text}`}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={() => setMenuOpen(false)}
+            className={`mt-12 p-2 rounded-full ${t.button}`}
+          >
+            Close
+          </button>
+        </div>
+      )}
+    </>
   );
 }

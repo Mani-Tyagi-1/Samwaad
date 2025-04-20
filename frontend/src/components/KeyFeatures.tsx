@@ -65,7 +65,7 @@ const KeyFeatures = () => {
         {features.map((feat, idx) => (
           <motion.div
             key={idx}
-            className={`p-6 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 ${card} transition-all`}
+            className={`p-6 rounded-xl shadow-lg border border-slate-200  ${card} transition-all`}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: idx * 0.1 }}
@@ -73,7 +73,7 @@ const KeyFeatures = () => {
           >
             <div className="mb-4 text-teal-500">{feat.icon}</div>
             <h4 className="text-xl font-semibold mb-2">{feat.title}</h4>
-            <p className="text-sm text-gray-600 dark:text-slate-300">
+            <p className="text-sm  text-slate-600">
               {feat.desc}
             </p>
           </motion.div>

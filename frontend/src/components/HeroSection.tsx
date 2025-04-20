@@ -1,32 +1,8 @@
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
 import { ChevronDown, MessageCircle, Users } from "lucide-react";
 import Hero1 from "../assets/Hero1.png";
 import { useTheme } from "./ThemeComponents/ThemeProvider";
-import  themes  from "./ThemeComponents/themes"; // adjust path as needed
-
-// const themes = {
-//   light: {
-//     bg: "bg-gray-50",
-//     text: "text-slate-800",
-//     primary: "bg-blue-500",
-//     secondary: "bg-emerald-500",
-//     card: "bg-white",
-//     accent: "bg-teal-500",
-//     button: "bg-slate-800 text-white",
-//     muted: "text-slate-500",
-//   },
-//   dark: {
-//     bg: "bg-slate-900",
-//     text: "text-gray-50",
-//     primary: "bg-blue-600",
-//     secondary: "bg-emerald-600",
-//     card: "bg-slate-800",
-//     accent: "bg-teal-600",
-//     button: "bg-teal-500 text-slate-900",
-//     muted: "text-slate-400",
-//   },
-// };
+import themes from "./ThemeComponents/themes"; // adjust path as needed
 
 export default function HeroSection() {
   const { theme } = useTheme();
@@ -67,10 +43,8 @@ export default function HeroSection() {
         </svg>
       </div>
 
-      <Navbar />
+      {/* <Navbar /> */}
 
-      {/* Your Hero content goes here - unchanged */}
-      {/* Example container: */}
       <div className="container mx-auto px-6 md:px-12 py-12 md:py-24 relative">
         <div
           className={`rounded-3xl shadow-xl overflow-hidden ${t.card} transition-all duration-500 transform hover:shadow-2xl`}

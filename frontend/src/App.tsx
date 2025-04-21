@@ -12,6 +12,9 @@ import Footer from "./components/Footer";
 import BookingPage from "./pages/BookingPage";
 import Login from "./pages/Login";
 import SignupPage from "./pages/SignUp";
+import ProfilePage from "./pages/ProfilePage";
+import ConsultantsPage from "./pages/ConsultantsPage";
+import VolunteersPage from "./pages/VolunteersPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -27,6 +30,10 @@ function LayoutWrapper() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/booking" element={<BookingPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/consult" element={<VolunteersPage />} />
+        <Route path="/experts" element={<ConsultantsPage />} />
+
         {/* Add other routes as needed */}
       </Routes>
       {!hideLayout && <Footer />}

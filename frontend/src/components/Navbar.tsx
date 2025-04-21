@@ -203,36 +203,44 @@ export default function Navbar() {
           {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
         </button>
 
-        {/* Profile Section or Login Button */}
+        {/* Profile Section + logout or Login Button */}
         <div className="hidden md:flex items-center">
-          {" "}
-          {/* Hide on small screens initially */}
           {user ? (
-            <Link
-              to="/profile" // Link to the user's profile page
-              className="flex items-center gap-2 hover:text-teal-500 cursor-pointer transition-all duration-300"
-            >
-              <img
-                // Use user's profile picture or a default/placeholder if missing
-                src={user.profilePicture || defaultProfilePic}
-                alt={`${user.username}'s profile`}
-                className="w-8 h-8 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600" // Added border and object-cover
-                onError={(e) => {
-                  // Handle image loading errors (e.g., invalid URL) by setting placeholder
-                  (e.target as HTMLImageElement).src = defaultProfilePic;
+            <div className="flex items-center gap-4">
+              <Link
+                to="/profile"
+                className="flex items-center gap-2 hover:text-teal-500 cursor-pointer transition-all duration-300"
+              >
+                <img
+                  src={user.profilePicture || defaultProfilePic}
+                  alt={`${user.username}'s profile`}
+                  className="w-8 h-8 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = defaultProfilePic;
+                  }}
+                />
+                <span className={`${t.text} font-medium`}>{user.username}</span>
+              </Link>
+
+              {/* Logout Button */}
+              <button
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("user");
+                  window.location.href = "/"; // Or use navigate("/") if using react-router
                 }}
-              />
-              <span className={`${t.text} font-medium`}>{user.username}</span>
-            </Link>
+                className="px-3 py-1 rounded-md text-sm font-medium text-red-500 border border-red-400 hover:bg-red-50 dark:hover:bg-red-900 transition"
+              >
+                Logout
+              </button>
+            </div>
           ) : (
-            // Show Login/Signup links if user is not logged in
             <Link
-              to="/login" // Adjust path to your login page
+              to="/login"
               className={`px-4 py-2 rounded-md font-medium transition-all duration-300 ${t.button} hover:opacity-90`}
             >
               Login
             </Link>
-            // You could add a Signup button here as well
           )}
         </div>
 

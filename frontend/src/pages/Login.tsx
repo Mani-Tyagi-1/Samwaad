@@ -25,15 +25,12 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
+      const res = await axios.post(`http://localhost:5000/api/auth/login`, {
+        email,
+        password,
+      });
       setAuthData(res.data.token, res.data.user);
-      window.location.href = "/home";
+      window.location.href = "/";
     } catch (error) {
       console.error("Login failed:", error);
     } finally {
@@ -324,7 +321,7 @@ const LoginPage = () => {
               <p className="mt-2">
                 Don't have an account?{" "}
                 <a
-                  href="/"
+                  href="/signup"
                   className="hover:underline transition-colors duration-300"
                   style={{ color: theme === "dark" ? "#4db6ac" : "#14b8a6" }}
                 >

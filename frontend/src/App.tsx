@@ -1,6 +1,5 @@
 import "./App.css";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
@@ -17,15 +16,15 @@ import SignupPage from "./pages/SignUp";
 function LayoutWrapper() {
   const location = useLocation();
   const hideLayout =
-    location.pathname === "/" || location.pathname === "/login";
+    location.pathname === "/signup" || location.pathname === "/login";
 
   return (
     <>
       {!hideLayout && <Navbar />}
       <Routes>
-        <Route path="/home" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<SignupPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/booking" element={<BookingPage />} />
         {/* Add other routes as needed */}

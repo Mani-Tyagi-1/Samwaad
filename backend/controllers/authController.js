@@ -45,7 +45,7 @@ export async function googleAuthCallback(req, res) {
   const token = sign({ id: user._id }, process.env.JWT_SECRET);
   // Return the token and user data to the frontend
   // res.json({ token, user });
-  res.redirect(`${process.env.CLIENT_URL}/home?token=${token}`);
+  res.redirect(`${process.env.CLIENT_URL}/?token=${token}`);
 
 }
 

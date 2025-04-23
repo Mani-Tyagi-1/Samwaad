@@ -15,6 +15,7 @@ import SignupPage from "./pages/SignUp";
 import ProfilePage from "./pages/ProfilePage";
 import ConsultantsPage from "./pages/ConsultantsPage";
 import VolunteersPage from "./pages/VolunteersPage";
+import ContactPage from "./pages/ContactPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -33,6 +34,8 @@ function LayoutWrapper() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/consult" element={<VolunteersPage />} />
         <Route path="/experts" element={<ConsultantsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        
 
         {/* Add other routes as needed */}
       </Routes>

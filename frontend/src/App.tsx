@@ -16,6 +16,9 @@ import ProfilePage from "./pages/ProfilePage";
 import ConsultantsPage from "./pages/ConsultantsPage";
 import VolunteersPage from "./pages/VolunteersPage";
 import ContactPage from "./pages/ContactPage";
+import ChatPage from "./pages/ChatPage"; 
+import VolunteerApplicationPage from "./pages/VolunteerApplicationPage";
+// import ChatBox from "./pages/ChatPage";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -35,7 +38,9 @@ function LayoutWrapper() {
         <Route path="/consult" element={<VolunteersPage />} />
         <Route path="/experts" element={<ConsultantsPage />} />
         <Route path="/contact" element={<ContactPage />} />
-        
+        <Route path="chat/:roomId" element={<ChatPage />} />
+        {/* <Route path="/chat" element={<ChatBox roomId={""} userId={""} />} /> */}
+        <Route path="/volunteer-application" element={<VolunteerApplicationPage />} />
 
         {/* Add other routes as needed */}
       </Routes>

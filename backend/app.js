@@ -2,37 +2,41 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import session from "express-session";
-import passport from "passport";
+import http from "http";
 import authRoutes from "./routes/authRoutes.js";
-import "./config/passport.js"; // Load passport strategies
+import volunteerRoutes from './routes/volunteerRoutes.js'; 
+import "./config/passport.js"; 
+
 dotenv.config();
 
 const app = express();
+const server = http.createServer(app);
 
-// Middleware
-app.use(cors());
-app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+// --- Environment Variables ---
+const MONGO_URI = process.env.MONGO_URI;
 
-// Passport session setup (optional if using sessions)
-app.use(
-  session({
-    secret: "keyboard cat", // Change this to a strong secret in production
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+if (!MONGO_URI) {
+  console.error("FATAL ERROR: MONGO_URI environment variable is not set.");
+  process.exit(1); 
+}
 
-app.use(passport.initialize());
-app.use(passport.session());
 
-// DB connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Connected to MongoDB"))
+
+// --- Middleware ---
+app.use(cors()); 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true })); 
+
+// --- Database Connection ---
+mongoose
+  .connect(MONGO_URI)
+  .then(() => console.log(`✅ Connected to MongoDB`))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Routes
+// --- API Routes ---
 app.use("/api/auth", authRoutes);
 
-export default app;
+app.use("/api/volunteers", volunteerRoutes); 
+
+
+export default app; 

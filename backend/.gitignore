@@ -17,3 +17,6 @@
 /.next/server/pages/_app.js
 /.next/server/pages/_error.js
 /.next/server/pages/_app
+
+
+/middlewares/uploads.js

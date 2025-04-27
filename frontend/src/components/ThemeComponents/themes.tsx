@@ -8,6 +8,8 @@ const Themes = {
     accent: "bg-teal-500",
     button: "bg-slate-800 text-white",
     muted: "text-slate-500",
+    textLabel: "text-slate-800",
+    border: "border-slate-300",
   },
   dark: {
     bg: "bg-slate-900",
@@ -18,6 +20,8 @@ const Themes = {
     accent: "bg-teal-600",
     button: "bg-teal-500 text-slate-900",
     muted: "text-slate-400",
+    textLabel: "text-gray-50",
+    border: "border-slate-700",
   },
 };
 
